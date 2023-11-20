@@ -1,12 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using ErrorOr;
+using TicketPlatformBackend.Model;
+using TicketPlatformBackend.Model.In;
+using TicketPlatformBackend.Repositories.Interfaces;
 
 namespace TicketPlatformBackend.Services
 {
     public class AdminService
     {
+        private IAdminRepository _repository;
+        private readonly IMapper _mapper;
+
+        public AdminService(IAdminRepository repository, IMapper mapper)
+        {
+            _repository = repository;
+            _mapper = mapper;
+        }
+
+        public List<Admin> GetAllAdmins(QueryParameters parameters)
+        {
+            return _repository.GetAllAdmins(parameters);
+        }
+
+        public ErrorOr<Admin> GetAdminById(int id)
+        {
+            return _repository.GetAdminById(id);
+        }
+
+        public int InsertAdmin(AdminIn adminIn)
+        {
+            var admin = _mapper.Map<Admin>(adminIn);
+
+            return _repository.InsertAdmin(admin);
+        }
+
+        public bool UpsertAdmin(int id, AdminIn adminIn)
+        {
+            var admin = _mapper.Map<Admin>(adminIn);
+
+            return _repository.UpsertAdmin(id, admin);
+        }
+
+        public bool DeleteAdmin(int id)
+        {
+            return _repository.DeleteAdmin(id);
+        }
+
+        public bool DeleteAdmins(List<int> ids)
+        {
+            return _repository.DeleteAdmins(ids);
+        }
     }
 }
