@@ -3,7 +3,7 @@ using TicketPlatformBackend.Model;
 
 namespace TicketPlatformBackend.Repositories.Interfaces
 {
-    internal interface ITicketRepository
+    public interface ITicketRepository
     {
         public List<Ticket> GetAllTickets(QueryParameters parameters);
         public ErrorOr<Ticket> GetTicketById(int id);
