@@ -1,12 +1,7 @@
 ﻿using Dapper.Contrib.Extensions;
 using ErrorOr;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TicketPlatformBackend.Model;
 using TicketPlatformBackend.Repositories.Interfaces;
 using TicketPlatformBackend.Services;
