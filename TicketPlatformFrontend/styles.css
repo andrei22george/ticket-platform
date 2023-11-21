@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #313131; /* Dark gray background color */
+}
+
+
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 12vh; /* 8% of the viewport height */
+    background-color: #1f1f1f;
+    color: #fff;
+    display: flex;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+#animated-tickets {
+    margin-left:2vw;
+    position: relative;
+    width: 110px;
+    height: 100%;
+    overflow: hidden;
+    overflow-wrap:normal;   
+    cursor: pointer;
+  }
+  
+  #dark-ticket,
+  #light-ticket {
+    position: absolute;
+    padding-top: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
+    color:#EEEE;
+    font-weight: bold;
+    width: 60%;
+    height: 100%;
+    top:40%;
+    background-color: rgb(70, 140, 115); /* Dark color for one ticket */
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  #light-ticket {
+    color:black;
+    background-color: #ddd; /* Light color for the other ticket */
+    left:20%;
+    rotate: 20deg;
+    text-align: center;
+    box-shadow: 0 0 10px black;
+  }
+  
+  #animated-tickets:hover #dark-ticket {
+    transform: translateY(-20%); /* Move the dark ticket up on hover */
+  }
+  
+  #animated-tickets:hover #light-ticket {
+    transform: translateY(-10%); /* Move the light ticket up on hover */
+  }
+
+
+.header-text {
+    height: 100%;
+    padding-left: 1vw;
+    bottom: 0;
+    height: 100%;
+    font-size: 4.5vh;
+    font-weight: bold;
+    display: flex;
+  align-items: flex-end;
+}

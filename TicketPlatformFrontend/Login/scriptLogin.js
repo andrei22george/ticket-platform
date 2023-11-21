@@ -1,5 +1,28 @@
 var signUp = false;
 
+function login(event) {
+    event.preventDefault();
+
+    console.log("login");
+    var username = document.getElementById("username");
+    var password = document.getElementById("password");
+    var wrongCredentialsMessage = document.getElementById("wrong-credentials");
+
+    if(!signUp)
+    {
+        if(loginService.login(username.value, password.value))
+        {
+            redirectToBrowse();
+        }
+        else
+        {
+            username.style.boxShadow = 'inset 0 0 10px red';
+            password.style.boxShadow = 'inset 0 0 10px red';
+            wrongCredentialsMessage.classList.remove("hidden");
+        }
+    }
+}
+
 function showSignUpForm() {
     var signUpText = document.querySelector(".sign-up-text");
     var loginButton = document.getElementById("login-button");
@@ -9,6 +32,13 @@ function showSignUpForm() {
     var backLogin = document.getElementById("back-to-login");
     var ageText = document.getElementById("age-label");
     var age = document.getElementById("age");
+    var username = document.getElementById("username");
+    var password = document.getElementById("password");
+    var wrongCredentialsMessage = document.getElementById("wrong-credentials");
+
+    username.style.boxShadow = 'none';
+    password.style.boxShadow = 'none';
+    wrongCredentialsMessage.classList.add("hidden");
 
     loginButton.textContent = "Sign up";
     welcomeText.classList.add("hidden");

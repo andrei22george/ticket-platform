@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesLogin.css">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Login - Ticket Platform</title>
+</head>
+<body>
+    <header class="header">
+        <div id = "animated-tickets" onclick="redirectToBrowse()">
+            <div id="dark-ticket">TP<br><br>______</div>
+            <div id="light-ticket">Ticket<br>Platform<br>______</div>
+        </div>
+        <div class="header-text">Ticket<br>Platform</div>
+    </header>
+
+
+    <div class = "glow-wrapper" ></div>
+    <div class="flex-container">
+        <div class="login-container" id = "login-container">
+            <div class="login-text">
+                <h1 id = "welcome-text">Welcome<br>back!</h1>
+                <h1 id = "back-to-login" onclick="showLogInForm()" class = "hidden">&lt; Back<br>to login</h1>
+                <div class = "sign-up-text" onclick="showSignUpForm()">First time here?<br>Sign up!</div>
+            </div>
+            <form id="loginForm" onsubmit="login(event)">
+                <label class="login-label" for="username">Username:</label>
+                <input type="text" id="username" required>
+
+                <label class="login-label hidden" id = "email-label" for="email">Email:</label>
+                <input type="email" id="email" class = "hidden">
+
+                <label class="login-label hidden" id = "age-label" for="email">Age:</label>
+                <select id="age" class="hidden"></select>
+
+                <label class="login-label" for="password">Password:</label>
+                <input type="password" id="password" required>
+
+                <button class="login-button" id = "login-button" type="submit">Login</button>
+            </form>
+        </div>
+        <div id = "wrong-credentials" class="hidden">
+            :( Seems like you entered the<br> wrong username or password!
+        </div>
+    </div>
+    <script src="scriptLogin.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
