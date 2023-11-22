@@ -54,10 +54,6 @@ body {
     color: #fff;
 }
 
-.hidden{
-    display: none;
-}
-
 #back-to-login{
     color: #FFFF;
     cursor: pointer;
