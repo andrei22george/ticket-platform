@@ -185,7 +185,27 @@ body {
   margin-left: auto;
 }
 
+/* For Webkit browsers (e.g., Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 12px;
+}
 
+::-webkit-scrollbar-thumb {
+  background-color: #468c73; /* Change the color of the scrollbar thumb */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  z-index: -10; /* Change the color of the scrollbar track */
+}
+
+/* For Firefox */
+/* Note: Mozilla Firefox currently only supports color changes */
+/* You can't change the width or style of the scrollbar in Firefox */
+* {
+  scrollbar-color: #468c73 #eeee;
+}
 
 
 
