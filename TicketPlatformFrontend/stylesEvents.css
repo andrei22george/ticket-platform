@@ -21,7 +21,7 @@
 
 .filter:hover{
     background-color: #666666;
-    box-shadow: 0 0 10px #468c73;
+    /*box-shadow: 0 0 10px #468c73;/**/
     transition: all ease-in-out 0.2s;
 }
 
@@ -90,6 +90,7 @@ input.date-filter::-webkit-calendar-picker-indicator {
 .event {
     color:white;
     height: 30vh;
+    position: relative;
     background-color: #1f1f1f;
     width: 70%;
     margin-left: auto;
@@ -99,9 +100,11 @@ input.date-filter::-webkit-calendar-picker-indicator {
     padding: 10px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
     box-shadow: 0 0 30px #468c73a6;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
     display: flex;
     flex-direction: row;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .event:hover{
@@ -109,20 +112,28 @@ input.date-filter::-webkit-calendar-picker-indicator {
     transition: all 0.3s;
 }
 
+.wishlist-btn{
+    position: absolute;
+    right:1vw;
+    z-index: 10;
+    font-size: 24px;
+}
+
 .event-data{
     display: flex;
     flex-direction: column;
     width:40%;
     position: relative;
+    height: 110%;
 }
 
 .event-info{
-    bottom:1vh;
+    bottom:-1vh;
     position: absolute;
     width: 100%;
 }
 
-.event-info h1{
+.event-title{
     width: 100%;
     text-align: center;
     font-size: 20px;
@@ -150,7 +161,7 @@ input.date-filter::-webkit-calendar-picker-indicator {
     border-radius: 50px;
     position:absolute;
     bottom: 1vh;
-    right: 1vh;
+    right: 0vh;
     height: 5vh;
     width: 10vw;
     cursor: pointer;
@@ -161,4 +172,17 @@ input.date-filter::-webkit-calendar-picker-indicator {
     transition: all 0.3s;
 }
 
+
+.event-img{
+    height:100%;
+    width:100%;
+    position: absolute;
+    left:-10px;
+    top:-10px;
+    object-fit: cover;
+}
+
+.event-img img{
+    content: fill;
+}
 
