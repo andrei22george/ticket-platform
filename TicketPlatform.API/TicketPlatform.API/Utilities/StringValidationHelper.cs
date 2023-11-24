@@ -27,5 +27,29 @@ namespace TicketPlatform.API.Utilities
 
             return regex.IsMatch(stringToValidate);
         }
+
+        public static bool IsAdminPassword(string stringToValidate)
+        {
+            var regexString = "^.{ 12,}$";
+            var regex = new Regex(regexString, RegexOptions.Compiled);
+
+            return regex.IsMatch(stringToValidate);
+        }
+
+        public static bool IsUserPassword(string stringToValidate)
+        {
+            var regexString = "^.{ 8,}$";
+            var regex = new Regex(regexString, RegexOptions.Compiled);
+
+            return regex.IsMatch(stringToValidate);
+        }
+
+        public static bool IsPrice(string stringToValidate)
+        {
+            var regexString = @"^\$?\d+(,\d{3})*(\.\d{1,2})?$";
+            var regex = new Regex(regexString, RegexOptions.Compiled);
+
+            return regex.IsMatch(stringToValidate);
+        }
     }
 }
