@@ -67,6 +67,10 @@ namespace TicketPlatform.API.ServiceErrors
             public static Error InvalidDate => Error.Validation(
                 code: "Event.InvalidDate",
                 description: "Invalid event date");
+
+            public static Error FailedValidation => Error.Validation(
+                code: "User.FailedValidation",
+                description: "EventIn Validation Failed");
         }
 
         public static class Ticket
@@ -90,6 +94,10 @@ namespace TicketPlatform.API.ServiceErrors
             public static Error InvalidQRCode => Error.Validation(
                 code: "Ticket.InvalidORCode",
                 description: "Invalid ticket QRCode");
+
+            public static Error FailedValidation => Error.Validation(
+                code: "User.FailedValidation",
+                description: "TicketIn Validation Failed");
         }
     }
 }
