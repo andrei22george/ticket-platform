@@ -1,5 +1,13 @@
 /* Updated styles.css */
 body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #313131;
     animation: pulsate 1.5s infinite alternate;
 }
 @keyframes pulsate {
