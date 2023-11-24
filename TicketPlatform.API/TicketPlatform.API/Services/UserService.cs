@@ -22,7 +22,7 @@ namespace TicketPlatform.API.Services
             return _repository.GetAllUsers(parameters);
         }
 
-        public ErrorOr<User> GetEventById(int id)
+        public ErrorOr<User> GetUserById(int id)
         {
             return _repository.GetUserById(id);
         }

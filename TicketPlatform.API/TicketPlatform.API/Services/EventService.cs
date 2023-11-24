@@ -6,7 +6,7 @@ using TicketPlatform.API.Repositories.Interfaces;
 
 namespace TicketPlatform.API.Services
 {
-    internal class EventService
+    public class EventService
     {
         private IEventRepository _repository;
         private readonly IMapper _mapper;
