@@ -6,9 +6,12 @@ using TicketPlatform.API.Model;
 using TicketPlatform.API.Services;
 using TicketPlatform.API.Utilities;
 using FluentValidation.Results;
+using TicketPlatform.API.ServiceErrors;
 
 namespace TicketPlatform.API.Controllers
 {
+    [ApiController]
+    [Route("admins")]
     public class AdminController : ControllerBase
     {
         private readonly AdminService adminService;
@@ -44,18 +47,17 @@ namespace TicketPlatform.API.Controllers
                 {
                     Console.WriteLine("Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage);
                 }
-                return 0; // Errors.Director.FailedValidation;
+                return Errors.Admin.FailedValidation;
             }
 
             if (StringValidationHelper.IsEmail(request.Email))
             {
-                return 0; // Errors.Director.InvalidEmail;
+                return Errors.Admin.InvalidEmail;
             }
-            // password validation
-            /*else if (StringValidationHelper.IsPhone(request.Phone))
+            else if (StringValidationHelper.IsAdminPassword(request.Password))
             {
-                return Errors.Director.InvalidPhone;
-            }*/
+                return Errors.Admin.InvalidPassword;
+            }
             else
             {
                 return adminService.InsertAdmin(request);
@@ -74,28 +76,27 @@ namespace TicketPlatform.API.Controllers
                 {
                     Console.WriteLine("Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage);
                 }
-                return false; // Errors.Director.FailedValidation;
+                return Errors.Admin.FailedValidation;
             }
 
             if (StringValidationHelper.IsEmail(request.Email))
             {
-                return false; // Errors.Director.InvalidEmail;
+                return Errors.Admin.InvalidEmail;
             }
-            // password validation
-            /*else if (StringValidationHelper.IsPhone(request.Phone))
+            else if (StringValidationHelper.IsAdminPassword(request.Password))
             {
-                return false; // Errors.Director.InvalidPhone;
-            }*/
+                return Errors.Admin.InvalidPassword;
+            }
             else
             {
-                return adminService.UpsertAdmin(id, request); // == false ? Errors.Director.NotFound : true;
+                return adminService.UpsertAdmin(id, request) == false ? Errors.Admin.NotFound : true;
             }
         }
 
         [HttpDelete("{id}")]
         public ErrorOr<bool> DeleteAdmin(int id)
         {
-            return adminService.DeleteAdmin(id); // == false ? Errors.Director.NotFound : true;
+            return adminService.DeleteAdmin(id) == false ? Errors.Admin.NotFound : true;
         }
 
         [HttpDelete]
