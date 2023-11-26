@@ -1,0 +1,110 @@
+.event-wrapper{
+    height: 80vh;
+    width: 80%;
+    background-color: #1f1f1f;
+    border-radius: 30px;
+    box-shadow: 0 0 20px #468c73;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    overflow: hidden;
+    color:white;
+    display: flex;
+    flex-direction: row;
+}
+
+.event-data{
+    position: relative;
+    width:45%;
+    display: flex;
+    height: 100%;
+}
+
+.event-img{
+    width: 100%;
+    align-self: flex-start;
+}
+
+.event-info{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom:1.5vh;
+    left:1.5vw;
+    font-size: 3vh;
+    font-style: italic;
+}
+
+.event-description{
+    width:65%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    position: relative;
+}
+
+.purchase-button{
+    position: absolute;
+    bottom:4vh;
+    right:2vw;
+    height:6vh;
+    height: auto;
+    width: 35%;
+    color: #fff;
+    font-size: 18px;
+    padding: 15px 10px; 
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: rgb(36, 72, 60);
+    margin:10px 0 0 0;
+    animation: glow 4s infinite;
+}
+@keyframes glow {
+    0% {
+        color: white;
+        text-shadow: 0 0 12px rgba(255, 255, 255, 1);
+    }
+    25% {
+        color: rgb(255, 255, 255);
+        text-shadow: 0 0 12px rgba(255, 255, 255, 1);
+    }
+    26% {
+        color: rgb(180, 180, 180);
+        text-shadow: 0 0 4px rgba(255, 255, 255, 1);
+    }
+    30% {
+        color:rgb(255, 255, 255);
+        text-shadow: 0 0 12px rgba(255, 255, 255, 1);
+    }
+    60% {
+        color: rgb(255, 255, 255);
+        text-shadow: 0 0 12px rgba(255, 255, 255, 1);
+    }
+    61% {
+        color: rgb(180, 180, 180);
+        text-shadow: 0 0 4px rgba(255, 255, 255, 1);
+    }
+    65% {
+        color:rgb(255, 255, 255);
+        text-shadow: 0 0 12px rgba(255, 255, 255, 1);
+    }
+    67% {
+        color: rgb(180, 180, 180);
+        text-shadow: 0 0 4px rgba(255, 255, 255, 1);
+    }
+    71% {
+        color:rgb(255, 255, 255);
+        text-shadow: 0 0 12px rgba(255, 255, 255, 1);
+    }
+    100% {
+        color: white;
+        text-shadow: 0 0 12px rgba(255, 255, 255, 1);
+    }
+}
+
+.purchase-button:hover{
+    background-color: rgb(70, 140, 115);
+    transition: 0.2s;
+}
+
+
