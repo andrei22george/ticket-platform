@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="accountStyles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Details about...</title>
+</head>
+<body>
+    <header class="header">
+        <div id = "animated-tickets" onclick="redirectToBrowse()">
+            <div id="dark-ticket">TP<br><br>______</div>
+            <div id="light-ticket">Ticket<br>Platform<br>______</div>
+        </div>
+        <div class="header-text">Ticket<br>Platform</div>
+        <div class="header-menu">
+            <ul class="top-menu">
+                <li class="top-menu-item" onclick="redirectToBrowse()"><span>Events</span></li>
+                <li class="top-menu-item" onclick="redirectToWishlist()"><span>Wishlist</span></li>
+                <li class="top-menu-item admin" id="admin-menu-button" onclick="redirectToAdmin()"><span>Admin</span></li>
+                <li class="top-menu-item right-top-menu" onclick="redirectToAccount()"><span>My account</span></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="body-wrapper">
+        <div class="account-wrapper">
+            <div class="acc-title">My account</div>
+            <div class="data-container">
+                <form id="acc-form">
+                    <label class="acc-label" for="username">Username:</label>
+                    <input class="acc-data-input" type="text" id="username" required>
+    
+                    <label class="acc-label" id = "email-label" for="email">Email:</label>
+                    <input class="acc-data-input" type="email" id="email">
+    
+                    <label class="acc-label" id = "age-label">Age:</label>
+                    <select class="acc-data-input" id="age"></select>
+    
+                    <label class="acc-label" for="cur-password">Password:</label>
+                    <input class="acc-data-input" type="password" id="cur-password" required>
+
+                    <label class="acc-label" for="new-password">Password:</label>
+                    <input class="acc-data-input" type="password" id="new-password" required>
+                </form>
+                <div class="card-data">
+                    <label class="acc-label" for="card-number">Card number:</label>
+                    <input class="acc-data-input" type="text" id="card-number" required>
+                    <label class="acc-label" for="exp-date">Exp date:</label>
+                    <input class="acc-data-input" type="text" id="exp-date" required>
+                    <label class="acc-label" for="ccv">CCV/CVV:</label>
+                    <input class="acc-data-input" type="text" id="ccv" required>
+                </div>
+            </div>
+            
+            <div class="acc-buttons">
+                <button class="log-out" onclick="logOut()" type="submit">Log out</button>
+                <button class="save-changes" onclick="saveChanges()">Save changes</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        
+    </footer>
+
+
+    <script src="accountScript.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

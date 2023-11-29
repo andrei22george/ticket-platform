@@ -1,0 +1,56 @@
+.account-wrapper{
+    height: 80vh;
+    width: 80%;
+    background-color: #1f1f1f;
+    border-radius: 30px;
+    box-shadow: 0 0 20px #468c73;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    overflow: hidden;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.acc-title{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 4vh;
+}
+
+.data-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 50px;
+    height: 60%;
+}
+
+.acc-label{
+
+}
+
+.acc-data-input{
+    background-color: #eeee;
+    border-radius: 30px;
+}
+
+#acc-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.card-data{
+    display: flex;
+    flex-direction: column;
+}
+
+.acc-buttons{
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    margin: 10px 50px;
+}
+
