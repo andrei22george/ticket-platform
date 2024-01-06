@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="eventStyles.css">
+    <link rel="stylesheet" href="cart.css">
     <link rel="stylesheet" href="../styles.css">
-    <title>Details about...</title>
+    <title>Ticket cart</title>
 </head>
 <body>
     <header class="header">
@@ -20,37 +20,38 @@
                 <li class="top-menu-item" onclick="redirectToWishlist()"><span>Wishlist</span></li>
                 <li class="top-menu-item admin" id="admin-menu-button" onclick="redirectToAdmin()"><span>Admin</span></li>
                 <li class="top-menu-item right-top-menu" onclick="redirectToCart()"><span>Cart</span></li>
-                <li class="top-menu-item" onclick="redirectToAccount()"><span>My account</span></li>
+                <li class="top-menu-item " onclick="redirectToAccount()"><span>My account</span></li>
             </ul>
         </div>
     </header>
 
+
+
     <div class="body-wrapper">
-        <div class="event-wrapper">
-            <div class="event-data">
-                <img class="event-img" src="../Resources/evt-img/untold.png" alt="">
-                <div class="event-info">
-                    <span class="event-info-data">City:</span>
-                    <span class="event-info-data">Venue:</span>
-                    <span class="event-info-data">Date/Time:</span>
-                    <span class="event-info-data">Tickets left:</span>
-                    <span class="event-info-data">Price :</span>
-                </div>
+        <div class="account-wrapper">
+            <div class="acc-title">Your cart</div>
+            <div class="data-container">
+                
             </div>
-            <div class="event-description">
-                <h1 class="event-title">Event title</h1>
-                dasjona jfnakjsfnk ajfnk adnuf indakjnd casjnck jasc safavdav
-                <button class="purchase-button">Purchase tickets</button>
+            
+            <div class="acc-buttons">
+                <button class="acc-btn log-out" onclick="logOut()" type="submit">Log out</button>
+                <button class="acc-btn save-changes" onclick="saveChanges()">Save changes</button>
             </div>
         </div>
-    </div>
+
+
 
     <footer>
-        
+        <img src="" class="logo-footer">
+        <div class="student-data"></div>
+
+        <div class="footer-info"></div>
+        <div class="copyright">©Copyright Graur Luca, Iclodean George, UTCN 2023</div>
     </footer>
 
 
-    <script src="eventScript.js"></script>
+    <script src="cart.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

@@ -28,34 +28,6 @@
     height: 60%;
 }
 
-.acc-label{
-
-}
-
-.acc-data-input{
-    background-color: #eeee;
-    border-radius: 30px;
-    height: 3.8vh;
-    margin-bottom: 10px;
-    width:20vw;
-}
-
-#acc-form{
-    display: flex;
-    flex-direction: column;
-}
-
-.divider{
-    background-color: #468c73;
-    width: 2px;
-    height: 100%;
-}
-
-.card-data{
-    display: flex;
-    flex-direction: column;
-}
-
 .acc-buttons{
     justify-content: space-between;
     display: flex;

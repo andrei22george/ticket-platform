@@ -68,3 +68,16 @@ function redirectToAccount(){
   }
 }
 
+function redirectToCart(){
+  var loginButton = document.getElementById("login-button");
+
+  if(!loginButton){
+    window.location.href = "../CartPage/cart.html";
+    console.log("ok");
+  }
+  else
+  {
+    console.log("You have to sign in first!");
+  }
+}
+
