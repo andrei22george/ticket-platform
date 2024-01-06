@@ -1,6 +1,6 @@
 var signUp = false;
 
-const signupEndpoint = 'http://localhost:5222/users';
+const signupEndpoint = 'https://localhost:7075/users';
 
 let userData = {
     name: '',
@@ -154,7 +154,7 @@ function signUpData(){
       .then(data => {
         // Handle the response data...
         console.log('User successfully signed up:', data);
-        //location.reload();
+        location.reload();
       })
       .catch(error => {
         // Handle errors...
