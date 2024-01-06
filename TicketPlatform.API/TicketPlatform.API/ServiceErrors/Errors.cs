@@ -126,5 +126,24 @@ namespace TicketPlatform.API.ServiceErrors
                 code: "Card.FailedValidation",
                 description: "CardIn Validation Failed");
         }
+
+        public static class Favourites
+        {
+            public static Error NotFound => Error.NotFound(
+                code: "Favourites.NotFound",
+                description: "Favourites not found");
+
+            public static Error InvalidURL => Error.Validation(
+                code: "Favourites.InvalidThumbnailURL",
+                description: "Invalid event thumbnail URL");
+
+            public static Error InvalidDate => Error.Validation(
+                code: "Favourites.InvalidDate",
+                description: "Invalid event date");
+
+            public static Error FailedValidation => Error.Validation(
+                code: "Favourites.FailedValidation",
+                description: "FavouritesIn Validation Failed");
+        }
     }
 }
