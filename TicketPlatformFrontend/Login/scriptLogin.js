@@ -1,16 +1,23 @@
 var signUp = false;
 
+const signupEndpoint = 'http://localhost:5222/users';
+
+let userData = {
+    name: '',
+    email: '',
+    password: '',
+    age: 0,
+};
+
 function login(event) {
     event.preventDefault();
 
     console.log("login");
-    var username = document.getElementById("username");
-    var password = document.getElementById("password");
     var wrongCredentialsMessage = document.getElementById("wrong-credentials");
 
     if(!signUp)
     {
-        if(loginService.login(username.value, password.value))
+        if(loginData())
         {
             redirectToBrowse();
         }
@@ -20,6 +27,10 @@ function login(event) {
             password.style.boxShadow = 'inset 0 0 10px red';
             wrongCredentialsMessage.classList.remove("hidden");
         }
+    }
+    else
+    {
+        signUpData();
     }
 }
 
@@ -103,5 +114,57 @@ function populateAgeDropdown() {
 // Event listener for changes in age
 document.getElementById('age').addEventListener('change', function() {
     const selectedAge = document.getElementById('age').value;
+    userData.age = selectedAge;
     console.log('Selected Age:', selectedAge);
 });
+
+document.getElementById('username').addEventListener('change', function() {
+    let un = document.getElementById('username').value;
+    userData.name = un; 
+});
+
+document.getElementById('email').addEventListener('change', function() {
+    let em = document.getElementById('email').value;
+    userData.email = em;
+});
+
+document.getElementById('password').addEventListener('change', function() {
+    let ps = document.getElementById('password').value;
+    userData.password = ps; 
+});
+
+
+
+function signUpData(){
+    console.log(userData);
+    fetch(signupEndpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://127.0.0.1:5500',
+        },
+        body: JSON.stringify(userData),
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Handle the response data...
+        console.log('User successfully signed up:', data);
+        //location.reload();
+      })
+      .catch(error => {
+        // Handle errors...
+        console.error('Error during signup:', error);
+      });
+}
+
+function loginData(){
+    
+}
+
+
+

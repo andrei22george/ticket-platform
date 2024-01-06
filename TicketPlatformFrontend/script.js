@@ -1,5 +1,6 @@
 isAdmin=true;
 
+
 var eventsItem;
 var wishlistItem;
 var adminItem;
