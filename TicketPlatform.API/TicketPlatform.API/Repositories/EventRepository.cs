@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using System.Data.SqlClient;
 using TicketPlatform.API.Model;
 using TicketPlatform.API.Repositories.Interfaces;
+using TicketPlatform.API.ServiceErrors;
 using TicketPlatform.API.Services;
 
 namespace TicketPlatform.API.Repositories
@@ -28,7 +29,7 @@ namespace TicketPlatform.API.Repositories
         {
             var ev = _sqlConnection.Get<Event>(id);
 
-            return ev; //== null ? Errors.Director.NotFound : director;
+            return ev == null ? Errors.Event.NotFound : ev;
         }
 
         public int InsertEvent(Event ev)

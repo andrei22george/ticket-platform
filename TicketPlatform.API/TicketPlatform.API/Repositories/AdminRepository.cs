@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using System.Data.SqlClient;
 using TicketPlatform.API.Model;
 using TicketPlatform.API.Repositories.Interfaces;
+using TicketPlatform.API.ServiceErrors;
 using TicketPlatform.API.Services;
 
 namespace TicketPlatform.API.Repositories
@@ -28,7 +29,7 @@ namespace TicketPlatform.API.Repositories
         {
             var admin = _sqlConnection.Get<Admin>(id);
 
-            return admin; //== null ? Errors.Director.NotFound : director;
+            return admin == null ? Errors.Admin.NotFound : admin;
         }
 
         public int InsertAdmin(Admin admin)

@@ -2,7 +2,7 @@
 
 namespace TicketPlatform.API.Model
 {
-    [Table("User")]
+    [Table("[User]")]
     public class User : Person
     {
         public string Password { get; set; } = string.Empty;
