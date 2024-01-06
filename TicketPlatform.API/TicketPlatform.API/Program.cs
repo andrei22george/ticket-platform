@@ -30,6 +30,18 @@ builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<TicketService>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 
+builder.Services.AddScoped<CardService>();
+builder.Services.AddScoped<ICardRepository, CardRepository>();
+
+builder.Services.AddScoped<CartService>();
+builder.Services.AddScoped<ICartRepository, CartRepository>();
+
+builder.Services.AddScoped<FavouritesService>();
+builder.Services.AddScoped<IFavouritesRepository, FavouritesRepository>();
+
+builder.Services.AddScoped<LoginService>();
+builder.Services.AddScoped<ILoginRepository, LoginRepository>();
+
 builder.Services.Configure<Configurations>(builder.Configuration);
 
 builder.Services.AddAutoMapper(typeof(Program));
