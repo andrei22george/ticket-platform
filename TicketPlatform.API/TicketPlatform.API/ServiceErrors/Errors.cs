@@ -46,8 +46,8 @@ namespace TicketPlatform.API.ServiceErrors
                 description: "Invalid user password");
 
             public static Error InvalidAge => Error.Validation(
-                    code: "User.InvalidAge",
-                    description: "Invalid user age");
+                code: "User.InvalidAge",
+                description: "Invalid user age");
 
             public static Error FailedValidation => Error.Validation(
                 code: "User.FailedValidation",
@@ -69,7 +69,7 @@ namespace TicketPlatform.API.ServiceErrors
                 description: "Invalid event date");
 
             public static Error FailedValidation => Error.Validation(
-                code: "User.FailedValidation",
+                code: "Event.FailedValidation",
                 description: "EventIn Validation Failed");
         }
 
@@ -96,8 +96,35 @@ namespace TicketPlatform.API.ServiceErrors
                 description: "Invalid ticket QRCode");
 
             public static Error FailedValidation => Error.Validation(
-                code: "User.FailedValidation",
+                code: "Ticket.FailedValidation",
                 description: "TicketIn Validation Failed");
+        }
+
+        public static class Card
+        {
+            public static Error NotFound => Error.NotFound(
+                code: "Card.NotFound",
+                description: "Card not found");
+
+            public static Error InvalidCard => Error.Validation(
+                code: "Card.InvalidCardName",
+                description: "Invalid card owner name");
+
+            public static Error InvalidDate => Error.Validation(
+                code: "Card.InvalidCardNumber",
+                description: "Invalid card number");
+
+            public static Error InvalidCVV => Error.Validation(
+                code: "Card.InvalidCVV",
+                description: "Invalid ticket price");
+
+            public static Error InvalidExpDate => Error.Validation(
+                code: "Card.InvalidExpDate",
+                description: "Invlaid card expiration date");
+
+            public static Error FailedValidation => Error.Validation(
+                code: "Card.FailedValidation",
+                description: "CardIn Validation Failed");
         }
     }
 }
