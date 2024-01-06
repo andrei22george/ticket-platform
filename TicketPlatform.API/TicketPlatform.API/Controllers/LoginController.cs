@@ -19,7 +19,7 @@ namespace TicketPlatform.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Person> Get([FromQuery] QueryParameters parameters)
+        public Person Get([FromQuery] QueryParameters parameters)
         {
             return loginService.GetLoginByCredentials(parameters);
         }
