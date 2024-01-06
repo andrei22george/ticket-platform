@@ -12,6 +12,9 @@ namespace TicketPlatform.API
             CreateMap<UserIn, User>();
             CreateMap<EventIn, Event>();
             CreateMap<TicketIn, Ticket>();
+            CreateMap<CardIn, Card>();
+            CreateMap<CartIn, Cart>();
+            CreateMap<FavouritesIn, Favourites>();
         }
     }
 }
