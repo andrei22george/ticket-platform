@@ -15,9 +15,16 @@ namespace TicketPlatform.API.Services
             _mapper = mapper;
         }
 
-        public Person GetLoginByCredentials(QueryParameters parameters)
+        public Admin GetAdminLoginByCredentials(QueryParameters parameters)
         {
-            return _repository.GetLoginByCredentials(parameters);
+            return _repository.GetAdminLoginByCredentials(parameters);
+
+        }
+
+        public User GetUserLoginByCredentials(QueryParameters parameters)
+        {
+            return _repository.GetUserLoginByCredentials(parameters);
+
         }
     }
 }

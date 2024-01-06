@@ -4,6 +4,7 @@ namespace TicketPlatform.API.Repositories.Interfaces
 {
     public interface ILoginRepository
     {
-        public Person GetLoginByCredentials(QueryParameters parameters);
+        public Admin GetAdminLoginByCredentials(QueryParameters parameters);
+        public User GetUserLoginByCredentials(QueryParameters parameters);
     }
 }

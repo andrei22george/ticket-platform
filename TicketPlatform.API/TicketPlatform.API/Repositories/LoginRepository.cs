@@ -18,23 +18,18 @@ namespace TicketPlatform.API.Repositories
             _sqlConnection = new SqlConnection(_configuration.ConnectionString);
         }
 
-        public Person GetLoginByCredentials(QueryParameters parameters)
+        public Admin GetAdminLoginByCredentials(QueryParameters parameters)
         {
-            var searchInAdminTable = _sqlConnection.Query<Person>("SELECT * FROM Admin WHERE Email = @email AND Password = @password",
+            return _sqlConnection.Query<Admin>("SELECT * FROM Admin WHERE Email = @email AND Password = @password",
                 new { email = parameters.Email, password = parameters.Password })
-                .ToList();
+                .ToList().FirstOrDefault();
+        }
 
-            if (searchInAdminTable.Count > 0)
-            {
-                searchInAdminTable.FirstOrDefault().IsAdmin = true;
-                return searchInAdminTable.FirstOrDefault();
-            }
-            else
-            {
-                return _sqlConnection.Query<Person>("SELECT * FROM [User] WHERE email = @email AND password = @password",
-                    new { email = parameters.Email, password = parameters.Password })
-                    .ToList().FirstOrDefault();
-            }
+        public User GetUserLoginByCredentials(QueryParameters parameters)
+        {
+            return _sqlConnection.Query<User>("SELECT * FROM [User] WHERE Email = @email AND Password = @password",
+                new { email = parameters.Email, password = parameters.Password })
+                .ToList().FirstOrDefault();
         }
     }
 }

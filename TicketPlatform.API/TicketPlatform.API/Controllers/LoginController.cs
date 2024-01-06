@@ -18,10 +18,16 @@ namespace TicketPlatform.API.Controllers
             loginService = service;
         }
 
-        [HttpGet]
-        public Person Get([FromQuery] QueryParameters parameters)
+        [HttpGet("admin")]
+        public Admin GetAdminLoginByCredentials([FromQuery] QueryParameters parameters)
         {
-            return loginService.GetLoginByCredentials(parameters);
+            return loginService.GetAdminLoginByCredentials(parameters);
+        }
+
+        [HttpGet("user")]
+        public User GetUserLoginByCredentials([FromQuery] QueryParameters parameters)
+        {
+            return loginService.GetUserLoginByCredentials(parameters);
         }
     }
 }
