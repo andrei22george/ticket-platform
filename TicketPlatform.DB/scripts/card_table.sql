@@ -1,0 +1,7 @@
+CREATE TABLE Card (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(50),
+    Card_Number NVARCHAR(50),
+    CVV NVARCHAR(50),
+    Exp_Date NVARCHAR(50)
+);
