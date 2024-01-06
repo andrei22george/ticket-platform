@@ -12,3 +12,4 @@ function add_remove_wishlist(id){
     }
     
 }
+

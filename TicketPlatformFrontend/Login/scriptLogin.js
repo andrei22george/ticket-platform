@@ -1,6 +1,8 @@
 var signUp = false;
+let adminIsChecked=false;
 
 const signupEndpoint = 'https://localhost:7075/users';
+const loginEndpoint = 'https://localhost:7075/login/';
 
 let userData = {
     name: '',
@@ -9,7 +11,7 @@ let userData = {
     age: 0,
 };
 
-function login(event) {
+async function login(event) {
     event.preventDefault();
 
     console.log("login");
@@ -17,13 +19,13 @@ function login(event) {
 
     if(!signUp)
     {
-        if(loginData())
-        {
+        try {
+            const data = await loginData(adminIsChecked);
+            // Handle successful login
             redirectToBrowse();
-        }
-        else
-        {
-            username.style.boxShadow = 'inset 0 0 10px red';
+        } catch (error) {
+            // Handle login failure
+            email.style.boxShadow = 'inset 0 0 10px red';
             password.style.boxShadow = 'inset 0 0 10px red';
             wrongCredentialsMessage.classList.remove("hidden");
         }
@@ -37,8 +39,8 @@ function login(event) {
 function showSignUpForm() {
     var signUpText = document.querySelector(".sign-up-text");
     var loginButton = document.getElementById("login-button");
-    var emailInput = document.getElementById("email");
-    var emailLabel = document.getElementById("email-label");
+    var nameInput = document.getElementById("username");
+    var nameLabel = document.getElementById("label-name");
     var welcomeText = document.getElementById("welcome-text");
     var backLogin = document.getElementById("back-to-login");
     var ageText = document.getElementById("age-label");
@@ -55,9 +57,9 @@ function showSignUpForm() {
     welcomeText.classList.add("hidden");
     backLogin.classList.remove("hidden");
     signUpText.classList.add("hidden");
-    emailInput.classList.remove("hidden");
-    emailInput.required = true;
-    emailLabel.classList.remove("hidden");
+    nameInput.classList.remove("hidden");
+    nameInput.required = true;
+    nameLabel.classList.remove("hidden");
     age.classList.remove("hidden");
     age.required = true;
     ageText.classList.remove("hidden");
@@ -73,8 +75,8 @@ function showSignUpForm() {
 function showLogInForm() {
     var signUpText = document.querySelector(".sign-up-text");
     var loginButton = document.getElementById("login-button");
-    var emailInput = document.getElementById("email");
-    var emailLabel = document.getElementById("email-label");
+    var nameInput = document.getElementById("username");
+    var nameLabel = document.getElementById("label-name");
     var welcomeText = document.getElementById("welcome-text");
     var backLogin = document.getElementById("back-to-login");
     var ageText = document.getElementById("age-label");
@@ -85,9 +87,9 @@ function showLogInForm() {
     welcomeText.classList.remove("hidden");
     backLogin.classList.add("hidden");
     signUpText.classList.remove("hidden");
-    emailInput.classList.add("hidden");
-    emailInput.required = false;
-    emailLabel.classList.add("hidden");
+    nameInput.classList.add("hidden");
+    nameInput.required = false;
+    nameLabel.classList.add("hidden");
     age.classList.add("hidden");
     age.required = false;
     ageText.classList.add("hidden");
@@ -111,12 +113,22 @@ function populateAgeDropdown() {
     ageDropdown.appendChild(option);
 }
 
+
 // Event listener for changes in age
 document.getElementById('age').addEventListener('change', function() {
     const selectedAge = document.getElementById('age').value;
     userData.age = selectedAge;
     console.log('Selected Age:', selectedAge);
 });
+
+document.getElementById('admin-check').addEventListener('change', function() {
+    let checkbox = document.getElementById('admin-check');
+    adminIsChecked = checkbox.checked;
+    console.log('Check:', adminIsChecked);
+    localStorage.setItem('isAdmin', adminIsChecked);
+    console.log(localStorage.getItem('isAdmin'));
+});
+
 
 document.getElementById('username').addEventListener('change', function() {
     let un = document.getElementById('username').value;
@@ -162,9 +174,44 @@ function signUpData(){
       });
 }
 
-function loginData(){
-    
+async function loginData(adminIsChecked) {
+    console.log("adminIsChecked: ", adminIsChecked);
+
+    const requestData = {
+        email: userData.email,
+        password: userData.password,
+    };
+
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    const queryString = `?Email=${requestData.email}&Password=${requestData.password}`;
+
+    const endpoint = adminIsChecked ? loginEndpoint + "admin" : loginEndpoint + "user";
+
+    const fullEndpoint = endpoint + queryString;
+
+    try {
+        const response = await fetch(fullEndpoint, requestOptions);
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+
+        console.log('User successfully logged in:', data);
+        return data;
+    } catch (error) {
+        console.error('Error during login:', error);
+        throw error; // rethrow the error for the calling function to handle
+    }
 }
+
 
 
 

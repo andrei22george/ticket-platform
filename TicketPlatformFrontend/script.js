@@ -1,34 +1,36 @@
-isAdmin=true;
-
-
 var eventsItem;
 var wishlistItem;
 var adminItem;
 var myAccountItem;
 
-document.addEventListener('DOMContentLoaded', function() {
-    
-    if (!isAdmin) {
-      var adminMenuItem = document.getElementById('admin-menu-button');
-      if (adminMenuItem) {
-        adminMenuItem.classList.add('hidden');
-      }
-    }
-
-  });
+let isAdmin = JSON.parse(localStorage.getItem('isAdmin')) || false;
 
 function redirectToBrowse(){
-    var loginButton = document.getElementById("login-button");
+    window.location.href = "../BrowsePage/browsePage.html";
+    console.log("isadmin",isAdmin);
+    console.log("ok")
 
-    if (!loginButton) {
-        window.location.href = "../BrowsePage/browsePage.html";
-        console.log("ok")
-    }
-    else
-    {
-        console.log("You have to sign in first!");
-    }
 }
+
+window.onload = function() {
+  console.log(isAdmin);
+  setTimeout(function() {
+      hideAdmin(isAdmin);
+  }, 50);
+};
+
+
+function hideAdmin(isAdmin){
+  var adminMenuItem = document.getElementById('admin-menu-button');
+  console.log("hide");
+
+  if (!isAdmin) {
+      if (adminMenuItem) {
+          adminMenuItem.classList.add('hidden');
+        }
+  }
+}
+
 
 function redirectToWishlist(){
   var loginButton = document.getElementById("login-button");
