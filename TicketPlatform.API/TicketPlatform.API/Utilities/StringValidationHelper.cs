@@ -51,5 +51,13 @@ namespace TicketPlatform.API.Utilities
 
             return regex.IsMatch(stringToValidate);
         }
+
+        public static bool IsCardNumber(string stringToValidate)
+        {
+            var regexString = @"\b(?:\d[ -]*?){13,19}\d\b";
+            var regex = new Regex(regexString, RegexOptions.Compiled);
+
+            return regex.IsMatch(stringToValidate);
+        }
     }
 }
