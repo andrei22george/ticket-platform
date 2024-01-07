@@ -7,10 +7,9 @@ namespace TicketPlatform.API.Utilities
     {
         public FavouritesInValidator()
         {
-            RuleFor(favouritesIn => favouritesIn.Title).NotNull();
-            RuleFor(favouritesIn => favouritesIn.Description).NotNull();
-            RuleFor(favouritesIn => favouritesIn.Thumbnail).NotNull();
-            RuleFor(favouritesIn => favouritesIn.Date).NotNull();
+            RuleFor(favouritesIn => favouritesIn.UserId).NotNull();
+            RuleFor(favouritesIn => favouritesIn.AdminId).NotNull();
+            RuleFor(favouritesIn => favouritesIn.EventId).NotNull();
         }
     }
 }

@@ -7,11 +7,9 @@ namespace TicketPlatform.API.Utilities
     {
         public TicketInValidator()
         {
-            RuleFor(ticketIn => ticketIn.EventTitle).NotNull();
-            RuleFor(ticketIn => ticketIn.EventDescription).NotNull();
-            RuleFor(ticketIn => ticketIn.EventThumbnail).NotNull();
-            RuleFor(ticketIn => ticketIn.EventDate).NotNull();
-            RuleFor(ticketIn => ticketIn.Price).NotNull();
+            RuleFor(ticketIn => ticketIn.UserId).NotNull();
+            RuleFor(ticketIn => ticketIn.AdminId).NotNull();
+            RuleFor(ticketIn => ticketIn.EventId).NotNull();
             RuleFor(ticketIn => ticketIn.QRCode).NotNull();
         }
     }
