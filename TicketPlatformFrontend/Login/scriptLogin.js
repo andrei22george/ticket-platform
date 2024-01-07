@@ -8,7 +8,7 @@ let userData = {
     name: '',
     email: '',
     password: '',
-    age: 0,
+    age: 0
 };
 
 async function login(event) {
@@ -125,8 +125,6 @@ document.getElementById('admin-check').addEventListener('change', function() {
     let checkbox = document.getElementById('admin-check');
     adminIsChecked = checkbox.checked;
     console.log('Check:', adminIsChecked);
-    localStorage.setItem('isAdmin', adminIsChecked);
-    console.log(localStorage.getItem('isAdmin'));
 });
 
 
@@ -175,8 +173,10 @@ function signUpData(){
 }
 
 async function loginData(adminIsChecked) {
-    console.log("adminIsChecked: ", adminIsChecked);
+    localStorage.setItem('isAdmin', adminIsChecked);
 
+    console.log(localStorage.getItem('isAdmin'));
+    
     const requestData = {
         email: userData.email,
         password: userData.password,
@@ -205,6 +205,10 @@ async function loginData(adminIsChecked) {
         const data = await response.json();
 
         console.log('User successfully logged in:', data);
+
+        localStorage.setItem('user_id', data.id);
+
+
         return data;
     } catch (error) {
         console.error('Error during login:', error);

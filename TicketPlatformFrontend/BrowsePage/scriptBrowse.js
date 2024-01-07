@@ -13,3 +13,6 @@ function add_remove_wishlist(id){
     
 }
 
+document.addEventListener('DOMContentLoaded',function(){
+    getEvents();
+});
