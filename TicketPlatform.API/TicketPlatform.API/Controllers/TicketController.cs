@@ -50,11 +50,7 @@ namespace TicketPlatform.API.Controllers
                 return Errors.Ticket.FailedValidation;
             }
 
-            if (StringValidationHelper.IsURL(request.EventThumbnail))
-            {
-                return Errors.Ticket.InvalidThumbnailURL;
-            }
-            else if (StringValidationHelper.IsURL(request.QRCode))
+            if (StringValidationHelper.IsURL(request.QRCode))
             {
                 return Errors.Ticket.InvalidQRCode;
             }
@@ -79,11 +75,7 @@ namespace TicketPlatform.API.Controllers
                 return Errors.Ticket.FailedValidation;
             }
 
-            if (StringValidationHelper.IsURL(request.EventThumbnail))
-            {
-                return Errors.Ticket.InvalidThumbnailURL;
-            }
-            else if (StringValidationHelper.IsURL(request.QRCode))
+            if (StringValidationHelper.IsURL(request.QRCode))
             {
                 return Errors.Ticket.InvalidQRCode;
             }

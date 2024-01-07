@@ -49,15 +49,8 @@ namespace TicketPlatform.API.Controllers
                 }
                 return Errors.Favourites.FailedValidation;
             }
-
-            if (StringValidationHelper.IsURL(request.Thumbnail))
-            {
-                return Errors.Favourites.InvalidURL;
-            }
-            else
-            {
-                return favouritesService.InsertFavourites(request);
-            }
+            
+            return favouritesService.InsertFavourites(request);
         }
 
         [HttpPut("{id}")]
@@ -75,14 +68,7 @@ namespace TicketPlatform.API.Controllers
                 return Errors.Favourites.FailedValidation;
             }
 
-            if (StringValidationHelper.IsURL(request.Thumbnail))
-            {
-                return Errors.Favourites.InvalidURL;
-            }
-            else
-            {
-                return favouritesService.UpsertFavourites(id, request) == false ? Errors.Favourites.NotFound : true;
-            }
+            return favouritesService.UpsertFavourites(id, request) == false ? Errors.Favourites.NotFound : true;
         }
 
         [HttpDelete("{id}")]
