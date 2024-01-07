@@ -5,11 +5,9 @@ namespace TicketPlatform.API.Model
     [Table("Ticket")]
     public class Ticket : Entity<int>
     {
-        public string EventTitle { get; set; } = string.Empty;
-        public string EventDescription { get; set; } = string.Empty;
-        public string EventThumbnail { get; set; } = string.Empty;
-        public DateTime EventDate { get; set; }
-        public float Price { get; set; }
+        public int UserId { get; set; }
+        public int AdminId { get; set; }
+        public int EventId { get; set; }
         public string QRCode { get; set; } = string.Empty;
     }
 }

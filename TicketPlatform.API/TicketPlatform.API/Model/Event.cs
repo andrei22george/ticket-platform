@@ -9,5 +9,9 @@ namespace TicketPlatform.API.Model
         public string Description { get; set; } = string.Empty;
         public string Thumbnail { get; set; } = string.Empty;
         public DateTime Date { get; set; }
+        public float Price { get; set; }
+        public string Venue { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
+        public int TotalTickets { get; set; }
     }
 }
