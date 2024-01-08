@@ -106,6 +106,7 @@ let selectedCity = "All";
 let selectedVenue = "All";
 let searchText = "";
 
+
 const searchFilter = document.getElementById('search-filter');
 
 locationFilterSelect.addEventListener('change', function() {
@@ -124,6 +125,17 @@ venueFilterSelect.addEventListener('change', function() {
 
 searchFilter.addEventListener('input', function() {
   searchText = searchFilter.value;
+  filterEvents();
+});
+
+const startDate = document.getElementById('start-date-filter');
+const endDate = document.getElementById('end-date-filter');
+
+startDate.addEventListener('change', function() {
+  filterEvents();
+});
+
+endDate.addEventListener('change', function() {
   filterEvents();
 });
 
@@ -262,7 +274,7 @@ function filterEvents(){
     eventList = data;
 
     eventList.forEach(event => {
-    if(!((searchText!="" && !event.title.toLowerCase().includes(searchText.toLowerCase())) || (selectedCity!="All"&&event.city!=selectedCity) || (selectedVenue!="All" && event.venue!=selectedVenue))) 
+    if(!((searchText!="" && !event.title.toLowerCase().includes(searchText.toLowerCase())) || (selectedCity!="All"&&event.city!=selectedCity) || (selectedVenue!="All" && event.venue!=selectedVenue) || (startDate.value && new Date(event.date) < new Date(startDate.value)) || (endDate.value && new Date(event.date) > new Date(endDate.value)))) 
     {
       let eventDiv = document.createElement('div');
       eventDiv.classList.add('event');
