@@ -7,6 +7,8 @@ let isAdmin =false;
 
 //endpoints
 const eventsEndpoint = 'https://localhost:7075/events';
+const wishlistEndpoint = 'https://localhost:7075/favourites';
+
 
 const locationFilterSelect = document.getElementById('location-filter');
 const venueFilterSelect = document.getElementById('host-filter');
@@ -20,7 +22,7 @@ function redirectToBrowse(){
 }
 
 window.onload = function() {
-  console.log(localStorage.getItem('isAdmin'));
+  //console.log(localStorage.getItem('isAdmin'));
   if(localStorage.getItem('isAdmin')=="true")
     isAdmin = true;
   setTimeout(function() {
@@ -31,7 +33,7 @@ window.onload = function() {
 
 function hideAdmin(isAdmin){
   var adminMenuItem = document.getElementById('admin-menu-button');
-  console.log("hide");
+  //console.log("hide");
 
   if (!isAdmin) {
       if (adminMenuItem) {
@@ -165,7 +167,16 @@ function getEvents(){
     // Wishlist button
     const wishlistBtn = document.createElement('div');
     wishlistBtn.classList.add('wishlist-btn');
-    wishlistBtn.innerHTML = '&#9734;';
+    console.log("evId",event.id,checkWishlist(localStorage.getItem('user_id'), event.id));
+    checkWishlist(localStorage.getItem('user_id'), event.id)
+    .then(result => {
+        if (result.length > 0) {
+            wishlistBtn.innerHTML = '★';
+        } else {
+            wishlistBtn.innerHTML = '☆';
+        }
+    });
+
     wishlistBtn.addEventListener('click', function() {
         add_remove_wishlist(this.parentNode.id);
     });
@@ -193,7 +204,7 @@ function getEvents(){
     // Event info
     const eventInfo = document.createElement('div');
     eventInfo.classList.add('event-info');
-    const infoLabels = ['City', 'Venue', 'Date/Time', 'Tickets left', 'Price'];
+    const infoLabels = ['City', 'Venue', 'Date/Time', 'Tickets', 'Price'];
     const labelsAndProperties = [
       { label: 'City', property: 'city' },
       { label: 'Venue', property: 'venue' },
@@ -283,7 +294,15 @@ function filterEvents(){
       // Wishlist button
       const wishlistBtn = document.createElement('div');
       wishlistBtn.classList.add('wishlist-btn');
-      wishlistBtn.innerHTML = '&#9734;';
+      console.log("wishlistBtn:", checkWishlist(localStorage.getItem('user_id'), event.id));
+      checkWishlist(localStorage.getItem('user_id'), event.id)
+      .then(result => {
+        if (result.length > 0) {
+            wishlistBtn.innerHTML = '★';
+        } else {
+            wishlistBtn.innerHTML = '☆';
+        }
+      });
       wishlistBtn.addEventListener('click', function() {
           add_remove_wishlist(this.parentNode.id);
       });
@@ -311,7 +330,7 @@ function filterEvents(){
       // Event info
       const eventInfo = document.createElement('div');
       eventInfo.classList.add('event-info');
-      const infoLabels = ['City', 'Venue', 'Date/Time', 'Tickets left', 'Price'];
+      const infoLabels = ['City', 'Venue', 'Date/Time', 'Tickets', 'Price'];
       const labelsAndProperties = [
         { label: 'City', property: 'city' },
         { label: 'Venue', property: 'venue' },
@@ -356,5 +375,113 @@ function filterEvents(){
     console.error('Error fetching events:', error);
   });
 }
+
+function add_remove_wishlist(id) {
+  const eventId = id.substring(2);
+
+  let wishlistBody = {
+    userId: -1,      
+    adminId: -1,
+    eventId: Number(eventId)
+  };
+  if(localStorage.getItem('isAdmin')=="true"){
+    wishlistBody.adminId = localStorage.getItem('user_id');
+  }
+  else
+  {
+    wishlistBody.userId = localStorage.getItem('user_id');
+  }
+
+  checkWishlist(localStorage.getItem('user_id'), eventId).then(result => {
+    if (result === false) {
+        // Add to wishlist
+        fetch(wishlistEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(wishlistBody)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Wishlist updated successfully:', data);
+            // Handle the response data as needed
+        })
+        .catch(error => {
+            console.error('Error updating wishlist:', error);
+        });
+    } else {
+        // Remove from wishlist
+        result.forEach(res=>
+        {let endpointDel = wishlistEndpoint + '/' + res.id;
+        fetch(endpointDel, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Wishlist item deleted successfully:', data);
+            // Handle the response data as needed
+        })
+        .catch(error => {
+            console.error('Error deleting wishlist item:', error);
+        });});
+    }
+    });
+
+  var ev = document.getElementById(id);
+          var starDiv = ev.querySelector('.wishlist-btn');
+          
+          if (starDiv.textContent === '☆') {
+              starDiv.textContent = '★';
+
+          } else {
+              
+              starDiv.textContent = '☆'; 
+
+          }
+}
+
+
+function checkWishlist(userId, evId) {
+  return fetch('https://localhost:7075/favourites')
+      .then(response => response.json())
+      .then(data => {
+          const matchingRows = data.filter(item => 
+            (parseInt(item.userId) === parseInt(userId) && parseInt(item.eventId) === parseInt(evId)) ||
+            (parseInt(item.adminId) === parseInt(userId) && parseInt(item.eventId) === parseInt(evId))
+          );
+          data.forEach(item => {
+            
+          });
+
+          if (matchingRows.length > 0) {
+              console.log('Matching rows found:', matchingRows);
+              return matchingRows;
+          } else {
+              console.log('No matching rows found.');
+              return false;
+          }
+     })
+      .catch(error => {
+          console.error('Error fetching wishlist:', error);
+          return false;
+      });
+}
+
+
+
 
 
