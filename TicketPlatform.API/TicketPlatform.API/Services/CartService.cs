@@ -50,5 +50,10 @@ namespace TicketPlatform.API.Services
         {
             return _repository.DeleteCarts(ids);
         }
+
+        public void SendEmail(string email)
+        {
+            _repository.SendEmail(email); 
+        }
     }
 }

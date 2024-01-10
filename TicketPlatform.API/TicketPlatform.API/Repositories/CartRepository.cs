@@ -2,6 +2,8 @@
 using ErrorOr;
 using Microsoft.Extensions.Options;
 using System.Data.SqlClient;
+using System.Net.Mail;
+using System.Net;
 using TicketPlatform.API.Model;
 using TicketPlatform.API.Repositories.Interfaces;
 using TicketPlatform.API.ServiceErrors;
@@ -54,6 +56,39 @@ namespace TicketPlatform.API.Repositories
             var cartsToDelete = ids.Select(id => new Cart { IdUser = id }).ToList();
 
             return _sqlConnection.Delete(cartsToDelete);
+        }
+
+        public void SendEmail(string toEmail)
+        {
+            string fromEmail = "confirmation.ticketis@gmail.com";
+            string password = "gyig oodb ssrm iiah";
+
+            string subject = "Confirmare comanda bilete online";
+            string body = "Stimate utilizator, \r\n <br> Acest mail contine codul QR al biletelor achizitionate pe baza carora se face accesul la eveniment. \r\n <br> Multumim pentru comanda! \r\n <br>";
+
+            try
+            {
+                using (MailMessage mail = new())
+                {
+                    mail.From = new MailAddress(fromEmail);
+                    mail.To.Add(toEmail);
+                    mail.Subject = subject;
+                    mail.Body = body;
+                    mail.IsBodyHtml = true;
+
+                    using SmtpClient smtp = new("smtp.gmail.com");
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    smtp.Credentials = new NetworkCredential(fromEmail, password);
+
+                    smtp.Send(mail);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
         }
     }
 }

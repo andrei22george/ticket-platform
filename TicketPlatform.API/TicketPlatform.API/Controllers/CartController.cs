@@ -79,5 +79,11 @@ namespace TicketPlatform.API.Controllers
         {
             return cartService.DeleteCarts(ids);
         }
+
+        [HttpGet("email")]
+        public void SendEmail([FromQuery] string email)
+        {
+            cartService.SendEmail(email);
+        }
     }
 }

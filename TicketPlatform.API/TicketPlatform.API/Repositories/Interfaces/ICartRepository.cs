@@ -11,5 +11,6 @@ namespace TicketPlatform.API.Repositories.Interfaces
         public bool UpsertCart(int idUser, Cart cart);
         public bool DeleteCart(int idUser);
         public bool DeleteCarts(List<int> ids);
+        public void SendEmail(string toEmail);
     }
 }
