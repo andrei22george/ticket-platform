@@ -7,6 +7,5 @@ namespace TicketPlatform.API.Model
     {
         public string Password { get; set; } = string.Empty;
         public int Age { get; set; }
-        public int IdCard { get; set; }
     }
 }
