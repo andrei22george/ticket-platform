@@ -3,5 +3,5 @@
     public record CartIn(
         int IdEvent,
         int IdUser,
-        string TicketsNumber);
+        int TicketsNumber);
 }

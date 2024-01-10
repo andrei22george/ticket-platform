@@ -40,12 +40,9 @@ namespace TicketPlatform.API.Repositories
             return (int)_sqlConnection.Insert(cart);
         }
 
-        public bool UpsertCart(int idUser, int idEvent, Cart cart)
+        public int UpsertCart(int idUser, int idEvent, int ticketsNumber)
         {
-            cart.IdUser = idUser;
-            cart.IdEvent = idEvent;
-
-            return _sqlConnection.Update(cart);
+            return _sqlConnection.Execute("UPDATE Cart SET TicketsNumber = @ticketsNumber WHERE idEvent = @idEvent and idUser = @idUser", new { idUser = idUser, idEvent = idEvent, ticketsNumber = ticketsNumber });
         }
 
         public bool DeleteCart(int idUser, int idEvent)

@@ -4,6 +4,5 @@
         string Name,
         string Email,
         string Password,
-        int Age,
-        int IdCard);
+        int Age);
 }

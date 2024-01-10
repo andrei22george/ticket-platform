@@ -51,24 +51,13 @@ namespace TicketPlatform.API.Controllers
             return cartService.InsertCart(request);
         }
 
-        [HttpPut("user={idUser}/event={idEvent}")]
-        public ErrorOr<bool> UpsertCart(int idUser, int idEvent, [FromBody] CartIn request)
+        [HttpPut("user={idUser}&event={idEvent}")]
+        public ErrorOr<int> UpsertCart(int idUser, int idEvent, [FromBody] int ticketsNumber)
         {
-            var validator = new CartInValidator();
-            ValidationResult results = validator.Validate(request);
-
-            if (!results.IsValid)
-            {
-                foreach (var failure in results.Errors)
-                {
-                    Console.WriteLine("Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage);
-                }
-            }
-
-            return cartService.UpsertCart(idUser, idEvent, request);
+            return cartService.UpsertCart(idUser, idEvent, ticketsNumber);
         }
 
-        [HttpDelete("user={idUser}/event={idEvent}")]
+        [HttpDelete("user={idUser}&event={idEvent}")]
         public ErrorOr<bool> DeleteCart(int idUser, int idEvent)
         {
             return cartService.DeleteCart(idUser, idEvent);
