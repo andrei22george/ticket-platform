@@ -27,7 +27,7 @@ window.onload = function() {
     isAdmin = true;
   setTimeout(function() {
       hideAdmin(isAdmin);
-  }, 50);
+  }, 20);
 };
 
 
@@ -39,6 +39,10 @@ function hideAdmin(isAdmin){
       if (adminMenuItem) {
           adminMenuItem.classList.add('hidden');
         }
+  }
+  else {
+     document.getElementById("cart-menu-btn").classList.add('hidden');
+     document.getElementById("acc-menu-btn").classList.add('right-top-menu');
   }
 }
 

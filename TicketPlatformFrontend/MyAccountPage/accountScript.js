@@ -1,6 +1,5 @@
 
 let idUser = localStorage.getItem('id_user');
-
 let userData;
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -15,9 +14,15 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     }
 
+    hideAdminData();
     populateAgeDropdown();
 });
 
+function hideAdminData() {
+    if(localStorage.getItem('isAdmin')=="true"){
+        
+    }
+}
 
 function getUserData(){
     const userId = localStorage.getItem('user_id');
