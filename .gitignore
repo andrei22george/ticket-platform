@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 /use-case.drawio
 /Backup-codes-confirmation.ticketis.txt
+/code snippets
+*.drawio
+*.png
