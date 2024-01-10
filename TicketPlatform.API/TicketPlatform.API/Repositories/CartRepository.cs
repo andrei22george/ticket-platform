@@ -39,16 +39,17 @@ namespace TicketPlatform.API.Repositories
             return (int)_sqlConnection.Insert(cart);
         }
 
-        public bool UpsertCart(int idUser, Cart cart)
+        public bool UpsertCart(int idUser, int idEvent, Cart cart)
         {
             cart.IdUser = idUser;
+            cart.IdEvent = idEvent;
 
             return _sqlConnection.Update(cart);
         }
 
-        public bool DeleteCart(int idUser)
+        public bool DeleteCart(int idUser, int idEvent)
         {
-            return _sqlConnection.Delete(new Cart { IdUser = idUser });
+            return _sqlConnection.Delete(new Cart { IdUser = idUser, IdEvent = idEvent });
         }
 
         public bool DeleteCarts(List<int> ids)
@@ -64,7 +65,7 @@ namespace TicketPlatform.API.Repositories
             string password = "gyig oodb ssrm iiah";
 
             string subject = "Confirmare comanda bilete online";
-            string body = "Stimate utilizator, \r\n <br> Acest mail contine codul QR al biletelor achizitionate pe baza carora se face accesul la eveniment. \r\n <br> Multumim pentru comanda! \r\n <br>";
+            string body = "Stimate utilizator, <br><br> Acest mail contine codul QR al biletelor achizitionate pe baza carora se face accesul la eveniment. <br><br> Multumim pentru comanda! <br><br>";
 
             try
             {

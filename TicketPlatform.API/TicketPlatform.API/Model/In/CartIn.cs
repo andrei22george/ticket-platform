@@ -2,6 +2,6 @@
 {
     public record CartIn(
         int IdEvent,
-        string IdUser,
+        int IdUser,
         string TicketsNumber);
 }

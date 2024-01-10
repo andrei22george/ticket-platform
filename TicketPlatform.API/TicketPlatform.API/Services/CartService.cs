@@ -27,23 +27,23 @@ namespace TicketPlatform.API.Services
             return _repository.GetCartByUserId(id);
         }
 
-        public int InsertCart(CartIn eventIn)
+        public int InsertCart(CartIn cartIn)
         {
-            var cart = _mapper.Map<Cart>(eventIn);
+            var cart = _mapper.Map<Cart>(cartIn);
 
             return _repository.InsertCart(cart);
         }
 
-        public bool UpsertCart(int id, CartIn eventIn)
+        public bool UpsertCart(int idUser, int idEvent, CartIn cartIn)
         {
-            var cart = _mapper.Map<Cart>(eventIn);
+            var cart = _mapper.Map<Cart>(cartIn);
 
-            return _repository.UpsertCart(id, cart);
+            return _repository.UpsertCart(idUser, idEvent, cart);
         }
 
-        public bool DeleteCart(int id)
+        public bool DeleteCart(int idUser, int idEvent)
         {
-            return _repository.DeleteCart(id);
+            return _repository.DeleteCart(idUser, idEvent);
         }
 
         public bool DeleteCarts(List<int> ids)
