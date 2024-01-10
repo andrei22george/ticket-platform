@@ -295,3 +295,61 @@ function delete_event(evId){
     });
     
 }
+
+
+const openModalBtn = document.getElementById('add-evt-btn');
+const addEventModal = document.getElementById('addEventModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const addEventForm = document.getElementById('addEventForm');
+
+openModalBtn.addEventListener('click', () => {
+    addEventModal.style.display = 'block';
+});
+
+closeModalBtn.addEventListener('click', () => {
+    addEventModal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target === addEventModal) {
+        addEventModal.style.display = 'none';
+    }
+});
+
+addEventForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    saveEvent();
+    addEventModal.style.display = 'none';
+});
+
+function saveEvent() {
+    const endpoint = 'https://localhost:7075/events';
+
+    const formData = new FormData(document.getElementById('addEventForm'));
+
+    const eventData = {};
+    formData.forEach((value, key) => {
+        eventData[key] = value;
+    });
+
+    fetch(endpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(eventData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Event added successfully:', data);
+        getAdminEvents();
+    })
+    .catch(error => {
+        // Handle errors
+        console.error('Error adding event:', error);
+    });
+}
+
+
+
+
