@@ -52,103 +52,93 @@ function populateEventData(evt){
 
 }
 
-function addToCart() {
-    const endpoint = 'https://localhost:7075/cart';
-    checkCart(currentEvent, localStorage.getItem('user_id')).then(result => {
-        if (result == -1) {
-            let postData = {
-                idEvent: localStorage.getItem('currentEvent'),
-                idUser: localStorage.getItem('user_id'),
-                ticketsNumber: 1
-            };
+async function addToCart() {
+    const eventId = currentEvent;
+    const userId = localStorage.getItem('user_id');
 
-            console.log(postData);
+    // Check if cart item exists
+    const cartItem = await getCartItem(eventId, userId);
 
-            const requestOptions = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(postData),
-            };
+    if (!cartItem) {
+        const postEndpoint = 'https://localhost:7075/cart';
+        const requestBody = {
+            idEvent: eventId,
+            idUser: userId,
+            ticketsNumber: 1
+        };
 
-            // Make the POST request
-            fetch(endpoint, requestOptions)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('POST request successful:', data);
-                })
-                .catch(error => {
-                    console.error('Error during POST request:', error);
-                });
-        } else {
-            // Check if result is a valid number
-            const ticketsNumber = parseInt(result);
-            if (!isNaN(ticketsNumber)) {
-                let postData = {
-                    idEvent: localStorage.getItem('currentEvent'),
-                    idUser: localStorage.getItem('user_id'),
-                    ticketsNumber: ticketsNumber + 1
-                };
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody),
+        };
 
-                console.log(postData);
+        try {
+            const response = await fetch(postEndpoint, requestOptions);
+            const data = await response.json();
 
-                const requestOptions = {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(postData),
-                };
-
-                let endpointUpdate = `${endpoint}?user=${postData.idUser}&event=${postData.idEvent}`;
-                
-                // Make the PUT request
-                fetch(endpointUpdate, requestOptions)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! Status: ${response.status}`);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('PUT request successful:', data);
-                    })
-                    .catch(error => {
-                        console.error('Error during PUT request:', error);
-                    });
+            if (data.isError) {
+                console.error('Error adding to cart:', data.errors);
             } else {
-                console.error('Invalid result returned from checkCart');
+                console.log('Added to cart successfully:', data.value);
             }
+        } catch (error) {
+            console.error('Error adding to cart:', error);
         }
-    });
-}
+    } else {
+        // If cart item exists, update the ticketsNumber
+        let newTicketsNumber = cartItem.ticketsNumber+1;
+        const putEndpoint = `https://localhost:7075/cart`;
+        const requestBody = {
+            idEvent: cartItem.idEvent,
+            idUser: cartItem.idUser,
+            ticketsNumber: newTicketsNumber
+        };
+        console.log(requestBody);
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody),
+        };
 
+        try {
+            const response = await fetch(putEndpoint, requestOptions);
+            const data = await response.json();
 
-function checkCart(evtId, userId){
-    const endpoint = 'https://localhost:7075/cart';
-
-    return fetch(endpoint)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+            if (data.isError) {
+                console.error('Error updating cart:', data.errors);
+            } else {
+                console.log('Cart updated successfully:', data.value);
             }
-            return response.json();
-        })
-        .then(data => {
-            const matchingRow = data.find(row => row.idEvent == evtId && row.idUser == userId);
-
-            return matchingRow ? matchingRow.ticketsNumber : -1;
-        })
-        .catch(error => {
-            console.error('Error during GET request:', error);
-            return 0;
-        });
+        } catch (error) {
+            console.error('Error updating cart:', error);
+        }
+    }
 }
+
+async function getCartItem(eventId, userId) {
+    const endpoint = `https://localhost:7075/cart`;
+
+    try {
+        const response = await fetch(endpoint);
+        const cartItems = await response.json();
+        console.log(cartItems);
+        let finalCart = cartItems.filter(item => parseInt(item.idEvent) == parseInt(eventId) && parseInt(item.idUser) === parseInt(userId));
+        if (finalCart.length > 0) {
+            console.log(finalCart);
+            return finalCart[0];
+        } else {
+            return false;
+        }
+    } catch (error) {
+        console.error('Error fetching cart item:', error);
+        return false;
+    }
+}
+
 
 

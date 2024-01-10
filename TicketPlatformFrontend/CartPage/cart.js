@@ -6,10 +6,18 @@ document.addEventListener("visibilitychange", function () {
   }
 });
 
+document.addEventListener("DOMContentLoaded", function(){
+  getCart();
+});
+
 window.onload = populateDropdown;
 
 function buy(){
 
+}
+
+function getCart(){
+  
 }
 
 function updateCart(){
