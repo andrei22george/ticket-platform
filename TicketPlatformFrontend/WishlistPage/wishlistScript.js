@@ -1,8 +1,18 @@
 
 
-document.addEventListener('DOMContentLoaded',function(){
-    getFavourites();
+document.addEventListener('DOMContentLoaded', function () {
+  getFavourites()
+      .then(() => {
+          //console.log('citiesF', citiesF); // Check if citiesF is populated correctly
+          //console.log('venuesF', venuesF); // Check if venuesF is populated correctly
+          populateFiltersF();
+      })
+      .catch(error => {
+          console.error('Error in getFavourites:', error);
+      });
 });
+
+
 
 
 let eventListF = [];
@@ -41,11 +51,13 @@ function getFavourites(){
 
     let eventsContainer = document.getElementById('events-container');
   
-    fetch(eventsEndpoint)
+    return fetch(eventsEndpoint)
     .then(response => response.json())
     .then(data => {
       eventListF = data;
   
+      const promises = [];
+
       eventListF.forEach(event => {
       ///////
       checkWishlist(localStorage.getItem('user_id'), event.id)
@@ -66,7 +78,7 @@ function getFavourites(){
             // Wishlist button
             const wishlistBtn = document.createElement('div');
             wishlistBtn.classList.add('wishlist-btn');
-            console.log("evId",event.id,checkWishlist(localStorage.getItem('user_id'), event.id));
+            //console.log("evId",event.id,checkWishlist(localStorage.getItem('user_id'), event.id));
             checkWishlist(localStorage.getItem('user_id'), event.id)
             .then(result => {
                 if (result.length > 0) {
@@ -108,7 +120,7 @@ function getFavourites(){
               { label: 'City', property: 'city' },
               { label: 'Venue', property: 'venue' },
               { label: 'Date/Time', property: 'date' },
-              { label: 'Tickets left', property: 'totalTickets' },
+              { label: 'Tickets', property: 'totalTickets' },
               { label: 'Price', property: 'price' }
           ];
         
@@ -142,41 +154,58 @@ function getFavourites(){
             // Append the event div to the events container
             eventsContainer.appendChild(eventDiv);
           }
-          
       });
-      ///////
-      
-        
       });
+      console.log("get done");
+      return true;
     })
     .catch(error => {
       console.error('Error fetching events:', error);
+      return false;
     });
     
-    const opt1=document.createElement('option');
-      opt1.value = "All";
-      opt1.text = "All";
-      locationFilterSelectF.appendChild(opt1);
-      const opt2=document.createElement('option');
-      opt2.value = "All";
-      opt2.text = "All";
-      venueFilterSelectF.appendChild(opt2);
+  }
   
-      citiesF.forEach(city => {
+  function populateFiltersF() {
+    console.log('Entering populateFiltersF');
+    console.log('citiesF:', citiesF);
+    console.log('venuesF:', venuesF);
+
+    const opt1 = document.createElement('option');
+    opt1.value = "All";
+    opt1.text = "All";
+    locationFilterSelectF.appendChild(opt1);
+    console.log('Option "All" added to locationFilterSelectF');
+
+    const opt2 = document.createElement('option');
+    opt2.value = "All";
+    opt2.text = "All";
+    venueFilterSelectF.appendChild(opt2);
+    console.log('Option "All" added to venueFilterSelectF');
+
+    citiesF.forEach(city => {
+        console.log('City:', city);
         let option = document.createElement('option');
         option.value = city;
         option.text = city;
         locationFilterSelectF.appendChild(option);
-      });
-    
-      venuesF.forEach(venue => {
+        console.log('Option added to locationFilterSelectF');
+    });
+
+    venuesF.forEach(venue => {
+        console.log('Venue:', venue);
         const option = document.createElement('option');
         option.value = venue;
         option.text = venue;
         venueFilterSelectF.appendChild(option);
-      });
-  }
-  
+        console.log('Option added to venueFilterSelectF');
+    });
+
+    console.log('Exiting populateFiltersF');
+}
+
+
+
   
   function filterFavourites(){
     let eventsContainer = document.getElementById("events-container");
@@ -238,7 +267,7 @@ function getFavourites(){
           { label: 'City', property: 'city' },
           { label: 'Venue', property: 'venue' },
           { label: 'Date/Time', property: 'date' },
-          { label: 'Tickets left', property: 'totalTickets' },
+          { label: 'Tickets', property: 'totalTickets' },
           { label: 'Price', property: 'price' }
       ];
   

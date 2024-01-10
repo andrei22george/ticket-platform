@@ -468,10 +468,10 @@ function checkWishlist(userId, evId) {
           });
 
           if (matchingRows.length > 0) {
-              console.log('Matching rows found:', matchingRows);
+              //console.log('Matching rows found:', matchingRows);
               return matchingRows;
           } else {
-              console.log('No matching rows found.');
+              //console.log('No matching rows found.');
               return false;
           }
      })
