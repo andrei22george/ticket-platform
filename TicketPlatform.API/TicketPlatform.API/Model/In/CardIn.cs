@@ -4,6 +4,6 @@
         string Name,
         string CardNumber,
         string CVV,
-        DateTime ExpDate,
+        string ExpDate,
         int IdUser);
 }
