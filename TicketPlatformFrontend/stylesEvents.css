@@ -204,3 +204,8 @@ input.date-filter::-webkit-calendar-picker-indicator {
 .dropdown-filter{
     color: white
 }
+
+.filter-info{
+    color:#727272;
+    padding-top:10px;
+}

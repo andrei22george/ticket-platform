@@ -40,10 +40,8 @@
                     <select class="acc-data-input" id="age"></select>
     
                     <label class="acc-label" for="cur-password">Password:</label>
-                    <input class="acc-data-input" type="password" id="cur-password" required>
+                    <input class="acc-data-input" type="password" id="password" required>
 
-                    <label class="acc-label" for="new-password">Password:</label>
-                    <input class="acc-data-input" type="password" id="new-password" required>
                 </form>
                 <div class="divider"></div>
                 <div class="card-data">
@@ -57,8 +55,8 @@
             </div>
             
             <div class="acc-buttons">
-                <button class="acc-btn log-out" onclick="logOut()" type="submit">Log out</button>
-                <button class="acc-btn save-changes" onclick="saveChanges()">Save changes</button>
+                <button class="acc-btn log-out" onclick="logout()">Log out</button>
+                <button class="acc-btn save-changes" onclick="saveChanges()" type="submit">Save changes</button>
             </div>
         </div>
     </div>
