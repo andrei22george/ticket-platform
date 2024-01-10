@@ -51,7 +51,7 @@ namespace TicketPlatform.API.Controllers
             return cartService.InsertCart(request);
         }
 
-        [HttpPut("user={idUser}&event={idEvent}")]
+        [HttpPut("user={idUser}/event={idEvent}")]
         public ErrorOr<bool> UpsertCart(int idUser, int idEvent, [FromBody] CartIn request)
         {
             var validator = new CartInValidator();
@@ -68,7 +68,7 @@ namespace TicketPlatform.API.Controllers
             return cartService.UpsertCart(idUser, idEvent, request);
         }
 
-        [HttpDelete("user={idUser}&event={idEvent}")]
+        [HttpDelete("user={idUser}/event={idEvent}")]
         public ErrorOr<bool> DeleteCart(int idUser, int idEvent)
         {
             return cartService.DeleteCart(idUser, idEvent);
