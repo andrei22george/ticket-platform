@@ -28,19 +28,19 @@
     <div class="body-wrapper">
         <div class="event-wrapper">
             <div class="event-data">
-                <img class="event-img" src="../Resources/evt-img/untold.png" alt="">
+                <img class="event-img" id="event-thumbnail" src="" alt="">
                 <div class="event-info">
-                    <span class="event-info-data">City:</span>
-                    <span class="event-info-data">Venue:</span>
-                    <span class="event-info-data">Date/Time:</span>
-                    <span class="event-info-data">Tickets left:</span>
-                    <span class="event-info-data">Price :</span>
+                    <span class="event-info-data" id="evt-city">City:</span>
+                    <span class="event-info-data" id="evt-venue">Venue:</span>
+                    <span class="event-info-data" id="evt-date">Date/Time:</span>
+                    <span class="event-info-data" id="evt-tickets">Tickets:</span>
+                    <span class="event-info-data" id="evt-price">Price :</span>
                 </div>
             </div>
             <div class="event-description">
-                <h1 class="event-title">Event title</h1>
-                dasjona jfnakjsfnk ajfnk adnuf indakjnd casjnck jasc safavdav
-                <button class="purchase-button">Purchase tickets</button>
+                <h1 class="event-title" id="event-title">Event title</h1>
+                <div id="event-description">dasjona jfnakjsfnk ajfnk adnuf indakjnd casjnck jasc safavdav</div>
+                <button class="purchase-button" onclick="addToCart()">Add to cart</button>
             </div>
         </div>
     </div>

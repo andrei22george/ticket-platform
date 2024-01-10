@@ -167,7 +167,7 @@ function getEvents(){
     // Wishlist button
     const wishlistBtn = document.createElement('div');
     wishlistBtn.classList.add('wishlist-btn');
-    console.log("evId",event.id,checkWishlist(localStorage.getItem('user_id'), event.id));
+    //console.log("evId",event.id,checkWishlist(localStorage.getItem('user_id'), event.id));
     checkWishlist(localStorage.getItem('user_id'), event.id)
     .then(result => {
         if (result.length > 0) {
@@ -235,6 +235,9 @@ function getEvents(){
     const seeMoreButton = document.createElement('button');
     seeMoreButton.classList.add('see-more-button');
     seeMoreButton.textContent = 'See more >>';
+    seeMoreButton.onclick = () => {
+      redirectToEvent(event.id);
+    };
     eventDescription.appendChild(seeMoreButton);
 
     // Append the event description to the event div
@@ -273,7 +276,6 @@ function getEvents(){
   });
   
 }
-
 
 function filterEvents(){
   let eventsContainer = document.getElementById("events-container");
@@ -361,6 +363,9 @@ function filterEvents(){
       const seeMoreButton = document.createElement('button');
       seeMoreButton.classList.add('see-more-button');
       seeMoreButton.textContent = 'See more >>';
+      seeMoreButton.onclick = () => {
+        redirectToEvent(event.id);
+      };
       eventDescription.appendChild(seeMoreButton);
 
       // Append the event description to the event div
@@ -454,7 +459,6 @@ function add_remove_wishlist(id) {
           }
 }
 
-
 function checkWishlist(userId, evId) {
   return fetch('https://localhost:7075/favourites')
       .then(response => response.json())
@@ -481,7 +485,10 @@ function checkWishlist(userId, evId) {
       });
 }
 
-
+function redirectToEvent(evId){
+  localStorage.setItem('currentEvent', evId);
+  window.location.href = "../EventPage/eventPage.html";
+}
 
 
 
