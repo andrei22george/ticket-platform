@@ -8,6 +8,7 @@ using TicketPlatform.API.Model;
 using TicketPlatform.API.Repositories.Interfaces;
 using TicketPlatform.API.ServiceErrors;
 using TicketPlatform.API.Services;
+using Dapper;
 
 namespace TicketPlatform.API.Repositories
 {
@@ -24,7 +25,7 @@ namespace TicketPlatform.API.Repositories
 
         public List<Cart> GetAllCarts(QueryParameters parameters)
         {
-            return _sqlConnection.GetAll<Cart>().ToList();
+            return _sqlConnection.Query<Cart>("SELECT * FROM Cart").ToList();
         }
 
         public ErrorOr<Cart> GetCartByUserId(int idUser)
