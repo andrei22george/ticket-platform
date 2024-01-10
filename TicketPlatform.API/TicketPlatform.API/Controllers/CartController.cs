@@ -52,9 +52,9 @@ namespace TicketPlatform.API.Controllers
         }
 
         [HttpPut]
-        public ErrorOr<int> UpsertCart([FromBody] int idUser, [FromBody] int idEvent, [FromBody] int ticketsNumber)
+        public ErrorOr<int> UpsertCart([FromBody] CartIn request)
         {
-            return cartService.UpsertCart(idUser, idEvent, ticketsNumber);
+            return cartService.UpsertCart(request);
         }
 
         [HttpDelete("user={idUser}&event={idEvent}")]

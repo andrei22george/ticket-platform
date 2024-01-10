@@ -34,9 +34,11 @@ namespace TicketPlatform.API.Services
             return _repository.InsertCart(cart);
         }
 
-        public int UpsertCart(int idUser, int idEvent, int ticketsNumber)
+        public int UpsertCart(CartIn cartIn)
         {
-            return _repository.UpsertCart(idUser, idEvent, ticketsNumber);
+            var cart = _mapper.Map<Cart>(cartIn);
+
+            return _repository.UpsertCart(cart);
         }
 
         public bool DeleteCart(int idUser, int idEvent)
