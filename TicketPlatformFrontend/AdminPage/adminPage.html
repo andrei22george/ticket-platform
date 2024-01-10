@@ -27,75 +27,20 @@
 
     <div class="body-wrapper">
         <div class="filter-container container">
-            <select class="filter dropdown-filter" id="location-filter"></select>
-            <select class="filter dropdown-filter" id="host-filter"></select>
+            <select class="filter dropdown-filter" id="location-filter-admin"></select>
+            <select class="filter dropdown-filter" id="host-filter-admin"></select>
             <div class="datepicker-container">
-                <input type="date" class="filter date-filter start-date" id="start-date-filter" name="start-date" placeholder="Start Date">
-                <input type="date" class="filter date-filter end-date" id="end-date-filter" name="end-date" placeholder="End Date">
+                <input type="date" class="filter date-filter start-date" id="start-date-filter-admin" name="start-date" placeholder="Start Date">
+                <input type="date" class="filter date-filter end-date" id="end-date-filter-admin" name="end-date" placeholder="End Date">
             </div>
             <label id="date-label">Date interval</label>
             
             
-            <input type="text" class="search-bar" placeholder="Search events">
+            <input type="text" class="search-bar" id="search-filter-admin" placeholder="Search events">
+            <button id="add-evt-btn" class="filter">Add a new event!</button>
         </div>
-        <div class="events-container container">
-            <div class="event" id="ev1">
-                <div class="delete-btn" onclick="deleteEvent(this.parentNode.id)">DEL</div>
-                <div class="event-data">
-                    <img class="event-img" src="../Resources/evt-img/untold.png" alt="">
-                </div>
-                <div class="event-description">
-                    <h1 class="event-title">Event title</h1>
-                    dasjona jfnakjsfnk ajfnk adnuf indakjnd casjnck jasc safavdav
-                    <div class="event-info">
-                        <span class="event-info-data">City:</span>
-                        <span class="event-info-data">Venue:</span>
-                        <span class="event-info-data">Date/Time:</span>
-                        <span class="event-info-data">Tickets left:</span>
-                        <span class="event-info-data">Price :</span>
-
-                    </div>
-                    <button class="see-more-button">Edit >></button>
-                </div>
-            </div>
-            <div class="event" id="ev2">
-                <div class="delete-btn" onclick="deleteEvent(this.parentNode.id)">DEL</div>
-                <div class="event-data">
-                    <img class="event-img" src="../Resources/evt-img/untold.png" alt="">
-                </div>
-                <div class="event-description">
-                    <h1 class="event-title">Event title</h1>
-                    dasjona jfnakjsfnk ajfnk adnuf indakjnd casjnck jasc safavdav
-                    <div class="event-info">
-                        <span class="event-info-data">City:</span>
-                        <span class="event-info-data">Venue:</span>
-                        <span class="event-info-data">Date/Time:</span>
-                        <span class="event-info-data">Tickets left:</span>
-                        <span class="event-info-data">Price :</span>
-
-                    </div>
-                    <button class="see-more-button">Edit >></button>
-                </div>
-            </div>
-            <div class="event" id="ev3">
-                <div class="delete-btn" onclick="deleteEvent(this.parentNode.id)">DEL</div>
-                <div class="event-data">
-                    <img class="event-img" src="../Resources/evt-img/untold.png" alt="">
-                </div>
-                <div class="event-description">
-                    <h1 class="event-title">Event title</h1>
-                    dasjona jfnakjsfnk ajfnk adnuf indakjnd casjnck jasc safavdav
-                    <div class="event-info">
-                        <span class="event-info-data">City:</span>
-                        <span class="event-info-data">Venue:</span>
-                        <span class="event-info-data">Date/Time:</span>
-                        <span class="event-info-data">Tickets left:</span>
-                        <span class="event-info-data">Price :</span>
-
-                    </div>
-                    <button class="see-more-button">Edit >></button>
-                </div>
-            </div>
+        <div class="events-container container" id="events-container">
+            
         </div>
     </div>
 

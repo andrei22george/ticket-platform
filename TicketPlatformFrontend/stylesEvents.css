@@ -209,3 +209,17 @@ input.date-filter::-webkit-calendar-picker-indicator {
     color:#727272;
     padding-top:10px;
 }
+
+#add-evt-btn{
+    color:white;
+    border:none;
+    padding: 0px 10px;
+    margin: 0 1vw;
+    background-color: #468c73;
+}
+
+#add-evt-btn:hover{
+    color:#1f1f1f;
+    background-color: #eee;
+    transition:0.2s;
+}

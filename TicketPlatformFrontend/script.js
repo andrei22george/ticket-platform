@@ -10,9 +10,6 @@ const eventsEndpoint = 'https://localhost:7075/events';
 const wishlistEndpoint = 'https://localhost:7075/favourites';
 
 
-const locationFilterSelect = document.getElementById('location-filter');
-const venueFilterSelect = document.getElementById('host-filter');
-
 function redirectToBrowse(){
     window.location.href = "../BrowsePage/browsePage.html";
     console.log("isadmin",isAdmin);
@@ -30,7 +27,6 @@ window.onload = function() {
   }, 20);
 };
 
-
 function hideAdmin(isAdmin){
   var adminMenuItem = document.getElementById('admin-menu-button');
   //console.log("hide");
@@ -45,7 +41,6 @@ function hideAdmin(isAdmin){
      document.getElementById("acc-menu-btn").classList.add('right-top-menu');
   }
 }
-
 
 function redirectToWishlist(){
   var loginButton = document.getElementById("login-button");
@@ -112,7 +107,8 @@ let selectedCity = "All";
 let selectedVenue = "All";
 let searchText = "";
 
-
+const locationFilterSelect = document.getElementById('location-filter');
+const venueFilterSelect = document.getElementById('host-filter');
 const searchFilter = document.getElementById('search-filter');
 
 locationFilterSelect.addEventListener('change', function() {
