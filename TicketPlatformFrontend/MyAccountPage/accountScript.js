@@ -20,7 +20,12 @@ document.addEventListener("DOMContentLoaded", function(){
 
 function hideAdminData() {
     if(localStorage.getItem('isAdmin')=="true"){
-        
+        const cardDataElements = document.getElementsByClassName('card-data');
+        for (const element of cardDataElements) {
+            element.classList.add('hidden');
+        }
+        document.getElementById('age').classList.add('hidden');
+        document.getElementById('age-label').classList.add('hidden');
     }
 }
 
@@ -48,7 +53,7 @@ function getUserData(){
 }
 
 function getAdminData(){
-    const adminId = localStorage.getItem('admin_id');
+    const adminId = localStorage.getItem('user_id');
     const adminEndpoint = `https://localhost:7075/admins/${adminId}`;
 
     return fetch(adminEndpoint)

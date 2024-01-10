@@ -39,9 +39,10 @@
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #a70000;
     text-decoration: none;
     cursor: pointer;
+    transition: 0.15s;
 }
 
 #addEventForm{
@@ -58,6 +59,8 @@
     margin:2px;
     border-radius: 20px;
     width:60%;
+    padding-left:10px;
+    padding-right: 10px;
 }
 
 .modal-input:hover{
