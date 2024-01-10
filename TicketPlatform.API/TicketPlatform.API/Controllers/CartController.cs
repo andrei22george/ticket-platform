@@ -57,13 +57,13 @@ namespace TicketPlatform.API.Controllers
             return cartService.UpsertCart(request);
         }
 
-        [HttpDelete("user={idUser}&event={idEvent}")]
-        public ErrorOr<bool> DeleteCart(int idUser, int idEvent)
+        [HttpDelete]
+        public ErrorOr<int> DeleteCart([FromBody] CartIn request)
         {
-            return cartService.DeleteCart(idUser, idEvent);
+            return cartService.DeleteCart(request);
         }
 
-        [HttpDelete]
+        [HttpDelete("delete-all")]
         public bool DeleteCarts([FromQuery] List<int> ids)
         {
             return cartService.DeleteCarts(ids);

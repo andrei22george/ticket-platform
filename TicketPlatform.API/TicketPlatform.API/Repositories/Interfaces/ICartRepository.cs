@@ -9,7 +9,7 @@ namespace TicketPlatform.API.Repositories.Interfaces
         public ErrorOr<Cart> GetCartByUserId(int idUser);
         public int InsertCart(Cart cart);
         public int UpsertCart(Cart cart);
-        public bool DeleteCart(int idUser, int idEvent);
+        public int DeleteCart(Cart cart);
         public bool DeleteCarts(List<int> ids);
         public void SendEmail(string toEmail);
     }

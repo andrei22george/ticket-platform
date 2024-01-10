@@ -45,9 +45,9 @@ namespace TicketPlatform.API.Repositories
             return _sqlConnection.Execute("UPDATE Cart SET TicketsNumber = @ticketsNumber WHERE idEvent = @idEvent and idUser = @idUser", new { idUser = cart.IdUser, idEvent = cart.IdEvent, ticketsNumber = cart.TicketsNumber });
         }
 
-        public bool DeleteCart(int idUser, int idEvent)
+        public int DeleteCart(Cart cart)
         {
-            return _sqlConnection.Delete(new Cart { IdUser = idUser, IdEvent = idEvent });
+            return _sqlConnection.Execute("DELETE from Cart WHERE IdUser = @idUser and IdEvent = @IdEvent", new { idUser = cart.IdUser, idEvent = cart.IdEvent });
         }
 
         public bool DeleteCarts(List<int> ids)
