@@ -207,6 +207,7 @@ async function loginData(adminIsChecked) {
         console.log('User successfully logged in:', data);
 
         localStorage.setItem('user_id', data.id);
+        localStorage.setItem('user_mail', data.email);
 
 
         return data;

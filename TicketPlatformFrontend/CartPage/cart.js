@@ -12,9 +12,29 @@ document.addEventListener("DOMContentLoaded", function(){
 
 let cartItems;
 
-function buy(){
+function buy() {
+  Array.from(cartItems).forEach(function (cartItem) {
+    let mail = localStorage.getItem("user_mail");
+    const endpoint = `https://localhost:7075/cart/email?email=${encodeURIComponent(mail)}`;
 
+    fetch(endpoint, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log(cartItem.idEvent);
+          deleteItem(cartItem.idEvent);
+        } else {
+          console.log(`Cart item not found for event ${cartItem.idEvent}`);
+        }
+      })
+      .catch(error => console.error('Error fetching cart items:', error));
+  });
 }
+
 
 function getCart() {
   const userId = localStorage.getItem('user_id');
@@ -86,11 +106,8 @@ async function populateCartItems() {
 
     // Append the cart item to the container
     cartContainer.appendChild(cartItemDiv);
+    updatePrice();
   }
-}
-
-function updateCart(){
-  
 }
 
 async function updatePrice() {
@@ -113,7 +130,6 @@ async function updatePrice() {
 
   
 }
-
 
 async function deleteItem(idEvent) {
   const idUser = localStorage.getItem('user_id');
